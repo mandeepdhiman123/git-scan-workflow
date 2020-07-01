@@ -44,7 +44,7 @@ jobs:
         run: mkdir Reports_`date +%d%b%y`
 
       #Create Report directory for all reports
-      - name: Create directory for reports
+      - name: Create file 
         run: echo testfile > Reports_`date +%d%b%y`/testfile.txt
         
       # Runs scan
@@ -55,11 +55,14 @@ jobs:
       - name: Zip the reports directory
         run: zip -r ./Reports_`date +%d%b%y`.zip ./Reports_`date +%d%b%y`
 
+      - name: list the reports directory
+        run: ls -lrt
+        
       - name: Upload result to workspace
         uses: actions/upload-artifact@v2
         with:
           name: uploaded-zip
-          path: Reports_`date +%d%b%y`.zip
+          path: ./Reports_`date +%d%b%y`.zip
 
       #Delete the reports from deployment server
       #- name: Delete directory for reports
