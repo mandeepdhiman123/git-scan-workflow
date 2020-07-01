@@ -9,11 +9,11 @@ name: CI
 #  schedule:
 #    - cron: '00 7 * * *'
 
-#on:
-#  push:
-#    branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -51,9 +51,11 @@ jobs:
       - name: Zip the reports directory
         run: zip -r ./Reports_`date +%d%b%y`.zip ./Reports_`date +%d%b%y`
 
-      #upload report
-      - name: Copy report to folder
-        run: cp ./Reports_`date +%d%b%y`.zip $GITHUB_WORKSPACE/security/
+      - name: Upload result to workspace
+        uses: actions/upload-artifact@v1
+        with:
+          name: Reports_`date +%d%b%y`.zip
+          path: $GITHUB_WORKSPACE/security/Reports_`date +%d%b%y`.zip
 
       #Delete the reports from deployment server
       - name: Delete directory for reports
