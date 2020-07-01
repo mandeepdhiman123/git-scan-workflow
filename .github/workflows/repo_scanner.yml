@@ -52,10 +52,10 @@ jobs:
         run: zip -r ./Reports_`date +%d%b%y`.zip ./Reports_`date +%d%b%y`
 
       - name: Upload result to workspace
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: uploaded-zip
-          path: ../Reports_`date +%d%b%y`.zip
+          path: ./Reports_`date +%d%b%y`.zip
 
       #Delete the reports from deployment server
       - name: Delete directory for reports
