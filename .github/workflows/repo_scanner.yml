@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: uploaded-zip
-          path: Reports_`date +%d%b%y`.zip
+          path: ../Reports_`date +%d%b%y`.zip
 
       #Delete the reports from deployment server
       - name: Delete directory for reports
